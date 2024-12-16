@@ -46,8 +46,9 @@ export default async function About() {
               
             </div>
           </div>
-          <div className="lg:w-1/3 lg:ml-auto mt-10 lg:mt-0">
-            <Image
+          
+          <div className="lg:w-1/3 lg:ml-auto mt-10 lg:mt-0 ">
+          <Image
               className="rounded-2xl object-cover max-h-96 bg-top bg-[#1d1d20]"
               src={data.profileImage.image}
               width={400}
@@ -55,6 +56,8 @@ export default async function About() {
               quality={100}
               alt={data.profileImage.alt}
             />
+          
+            
             <a
               href={`${data.resumeURL}?dl=${data.fullName}_resume`}
               className="flex items-center justify-center gap-x-2 bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-pointer font-medium mt-4"
@@ -70,6 +73,7 @@ export default async function About() {
             </a>
           </div>
         </div>
+        
       ))}
 </section>
 
