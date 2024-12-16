@@ -13,7 +13,7 @@ export default function Navbar() {
           <ul className="flex items-center gap-x-8">
             <li>
               <Link
-                href="/about"
+                href="#about"
                 className="hover:text-purple-400 duration-300"
               >
                 About
@@ -21,7 +21,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/projects"
+                href="#projects"
                 className="hover:text-purple-400 duration-300"
               >
                 Projects

@@ -17,7 +17,13 @@ export async function getProfile() {
       email,
       "resumeURL": resumeURL.asset->url,
       socialLinks,
-      skills
+       skills[] {
+        title,
+        description,
+        icon,
+        highlight
+      }
+
     }`
   );
 }
@@ -44,7 +50,10 @@ export async function getProjects() {
       name,
       "slug": slug.current,
       tagline,
-      "logo": logo.asset->url,
+      "coverImage": coverImage {
+    alt,
+    "image": asset->url
+  }
     }`
   );
 }
@@ -62,3 +71,17 @@ export async function getSingleProject(slug: string) {
     { slug }
   );
 }
+
+export async function getSkills() {
+  return client.fetch(
+    groq`*[_type == "skills"]{
+      _id,
+      title,                  // Title of the skill
+      description,            // Description of the skill
+      icon,                   // Icon for the skill (emoji or font-awesome class)
+      highlight,
+      Headline              // Boolean to check if the skill is highlighted
+    }`
+  );
+}
+

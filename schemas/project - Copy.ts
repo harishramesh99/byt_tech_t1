@@ -53,7 +53,20 @@ const project = {
         },
       ],
     },
-   
+    {
+      name: "Image",
+      title: " Image",
+      type: "image",
+      description: "Upload a cover image for this project",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
     {
       name: "description",
       title: "Description",

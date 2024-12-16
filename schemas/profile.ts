@@ -98,13 +98,8 @@ const profile = {
         columns: 2,
       },
     },
-    {
-      name: "skills",
-      title: "Skills",
-      type: "array",
-      description: "Add a list of skills",
-      of: [{ type: "string" }],
-    },
+    
+    
   ],
 };
 

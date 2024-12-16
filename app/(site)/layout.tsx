@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "A personal portfolio site built with Sanity and Next.js",
   openGraph: {
     images:
-      "https://res.cloudinary.com/victoreke/image/upload/v1689893059/docs/og.png",
+      " ",
   },
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-zinc-900 text-white`}>
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

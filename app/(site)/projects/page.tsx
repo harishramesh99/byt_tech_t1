@@ -7,39 +7,61 @@ export default async function Project() {
   const projects: ProjectType[] = await getProjects();
 
   return (
-    <main className="max-w-7xl mx-auto md:px-16 px-6">
-      <section className="max-w-2xl mb-16">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight">
-          Featured projects I&apos;ve built over the years
+    <main className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
+      {/* Header Section */}
+      <section className="text-center mb-16">
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-6">
+          HERE&apos;S A GLIMPSE OF SOME EXCITING{" "}
+          <span className="text-yellow-400">🧑‍💻PROJECTS</span> I&apos;VE DONE
         </h1>
-        <p className="text-base text-zinc-400 leading-relaxed">
-          I&apos;ve worked on tons of little projects over the years but these
-          are the ones that I&apos;m most proud of. Many of them are
-          open-source, so if you see something that piques your interest, check
-          out the code and contribute if you have ideas for how it can be
-          improved.
-        </p>
       </section>
 
-      <section className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mb-12">
+      {/* Projects Grid Section */}
+      <section className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
         {projects.map((project) => (
-          <Link
-            href={`/projects/${project.slug}`}
+          <div
             key={project._id}
-            className="flex items-center gap-x-4 bg-[#1d1d20] border border-transparent hover:border-zinc-700 p-4 rounded-lg ease-in-out"
+            className="border border-gray-300 rounded-xl shadow-lg overflow-hidden bg-white hover:shadow-2xl transition-shadow duration-300"
           >
-            <Image
-              src={project.logo}
-              width={60}
-              height={60}
-              alt={project.name}
-              className="bg-zinc-800 rounded-md p-2"
-            />
-            <div>
-              <h2 className="font-semibold mb-1">{project.name}</h2>
-              <div className="text-sm text-zinc-400">{project.tagline}</div>
+            {/* Project Image */}
+            <div className="relative h-64 overflow-hidden">
+              <Image
+                src={project.coverImage?.image || "/placeholder.png"}
+                alt={project.coverImage?.alt || project.name}
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform duration-300 hover:scale-110"
+              />
             </div>
-          </Link>
+
+            {/* Project Info */}
+            <div className="p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
+                {project.name}
+              </h2>
+              <p className="text-gray-600 text-sm mb-4">{project.tagline}</p>
+
+              {/* Tags Section */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {/* Example tags */}
+                <span className="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-200 rounded-lg">
+                  React
+                </span>
+                <span className="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-200 rounded-lg">
+                  Node.js
+                </span>
+              </div>
+
+              {/* View Project Link */}
+              <Link
+                href={`/projects/${project.slug}`}
+                className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-800"
+              >
+                View Project
+                <span className="text-xl">➔</span>
+              </Link>
+            </div>
+          </div>
         ))}
       </section>
     </main>
