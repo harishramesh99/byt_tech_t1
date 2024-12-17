@@ -2,7 +2,7 @@ import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import About from "../(site)/about/page";
 import Projects from "../(site)/projects/page";
-import SkillsPage from "../(site)/Skills/page";
+import SkillsPage from "./Skills/[skill]/page";
 
 export default async function Home() {
   const profile: ProfileType[] = await getProfile();
