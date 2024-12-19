@@ -33,7 +33,7 @@ export default function ContactForm({ isOpen, onClose }: ContactModalProps) {
     setErrorMessage("");
 
     try {
-      const res = await fetch(`/contactForm`, {
+      const res = await fetch(`/api/contactForm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ export default function ContactForm({ isOpen, onClose }: ContactModalProps) {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border text-gray-700 mb-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your name"
               disabled={status === "loading"}
             />
@@ -121,7 +121,7 @@ export default function ContactForm({ isOpen, onClose }: ContactModalProps) {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border text-gray-700 mb-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="your@email.com"
               disabled={status === "loading"}
             />
@@ -142,7 +142,7 @@ export default function ContactForm({ isOpen, onClose }: ContactModalProps) {
                 setFormData({ ...formData, message: e.target.value })
               }
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full px-3 py-2 border text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               placeholder="Your message..."
               disabled={status === "loading"}
             />
