@@ -16,10 +16,10 @@ const SkillsDataProvider = () => {
       try {
         console.log('Fetching skills...');
         const skillsData = await getSkills();
-        console.log('Skills fetched:', skillsData);
+        //console.log('Skills fetched:', skillsData);
         setSkills(skillsData);
       } catch (err) {
-        console.error('Error in fetchSkills:', err);
+        //console.error('Error in fetchSkills:', err);
         setError(err instanceof Error ? err.message : 'Failed to fetch skills');
       }
     };

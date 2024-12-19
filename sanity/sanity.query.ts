@@ -67,7 +67,7 @@ export async function getProjects() {
 }*/
 export async function getSkills() {
   try {
-    console.log('Starting getSkills fetch...');
+    //console.log('Starting getSkills fetch...');
     const query = groq`*[_type == "skills"]{
       _id,
       title,
@@ -76,12 +76,12 @@ export async function getSkills() {
       highlight,
       Headline
     }`;
-    console.log('Query:', query);
+    //console.log('Query:', query);
     const data = await client.fetch(query);
-    console.log('Skills Data Received:', data);
+    //console.log('Skills Data Received:', data);
     return data;
   } catch (error) {
-    console.error('Error fetching skills:', error);
+    //console.error('Error fetching skills:', error);
     throw error;
   }
 }
