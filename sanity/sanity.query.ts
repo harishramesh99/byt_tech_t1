@@ -17,12 +17,7 @@ export async function getProfile() {
       email,
       "resumeURL": resumeURL.asset->url,
       socialLinks,
-       skills[] {
-        title,
-        description,
-        icon,
-        highlight
-      }
+       
 
     }`
   );
@@ -58,6 +53,42 @@ export async function getProjects() {
   );
 }
 
+/*export async function getSkills() {
+  return client.fetch(
+    groq`*[_type == "skill"]{
+      _id,
+      title,                  // Title of the skill
+      description,            // Description of the skill
+      icon,                   // Icon for the skill (emoji or font-awesome class)
+      highlight,
+      Headline              // Boolean to check if the skill is highlighted
+    }`
+  );
+}*/
+export async function getSkills() {
+  try {
+    console.log('Starting getSkills fetch...');
+    const query = groq`*[_type == "skills"]{
+      _id,
+      title,
+      description,
+      icon,
+      highlight,
+      Headline
+    }`;
+    console.log('Query:', query);
+    const data = await client.fetch(query);
+    console.log('Skills Data Received:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    throw error;
+  }
+}
+
+
+
+
 export async function getSingleProject(slug: string) {
   return client.fetch(
     groq`*[_type == "project" && slug.current == $slug][0]{
@@ -72,16 +103,4 @@ export async function getSingleProject(slug: string) {
   );
 }
 
-export async function getSkills() {
-  return client.fetch(
-    groq`*[_type == "skills"]{
-      _id,
-      title,                  // Title of the skill
-      description,            // Description of the skill
-      icon,                   // Icon for the skill (emoji or font-awesome class)
-      highlight,
-      Headline              // Boolean to check if the skill is highlighted
-    }`
-  );
-}
 

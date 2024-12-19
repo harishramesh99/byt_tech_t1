@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Metadata } from "next";
 import { getSingleProject } from "@/sanity/sanity.query";
 import type { ProjectType } from "@/types";
