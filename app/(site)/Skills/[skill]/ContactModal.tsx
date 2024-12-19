@@ -33,7 +33,7 @@ export default function ContactForm({ isOpen, onClose }: ContactModalProps) {
     setErrorMessage("");
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contactForm`, {
+      const res = await fetch(`/contactForm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export default function ContactForm({ isOpen, onClose }: ContactModalProps) {
     >
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-bold">Contact Form</h2>
+          <h2 className="text-lg font-bold text-gray-700 mb-1">Contact Form</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-black transition"
