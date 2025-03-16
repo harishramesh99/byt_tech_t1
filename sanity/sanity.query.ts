@@ -38,20 +38,39 @@ export async function getJob() {
   );
 }
 
-export async function getProjects() {
+
+export async function getBlogPosts() {
   return client.fetch(
-    groq`*[_type == "project"]{
-      _id, 
-      name,
+    groq`*[_type == "post"] | order(publishedAt desc) {
+      _id,
+      title,
       "slug": slug.current,
-      tagline,
-      "coverImage": coverImage {
-    alt,
-    "image": asset->url
-  }
+      publishedAt,
+      excerpt,
+      mainImage {
+        alt,
+        "image": asset->url
+      }
     }`
   );
 }
+
+/*export async function getSinglePost(slug: string) {
+  return client.fetch(
+    groq`*[_type == "post" && slug.current == $slug][0]{
+      _id,
+      title,
+      publishedAt,
+      excerpt,
+      mainImage {
+        alt,
+        "image": asset->url
+      },
+      body
+    }`,
+    { slug }
+  );
+}*/
 
 /*export async function getSkills() {
   return client.fetch(
@@ -89,18 +108,90 @@ export async function getSkills() {
 
 
 
-export async function getSingleProject(slug: string) {
+export async function getProjects() {
   return client.fetch(
-    groq`*[_type == "project" && slug.current == $slug][0]{
+    groq`*[_type == "project"] {
       _id,
       name,
-      projectUrl,
-      coverImage { alt, "image": asset->url },
+      "slug": slug.current,
       tagline,
-      description
+      projectUrl,
+      "coverImage": {
+        "image": coverImage.asset->url,
+        "alt": coverImage.alt
+      }
+    }`
+  );
+}
+
+export async function getsingleProject(slug: string | undefined) {
+  if (!slug) return null;
+  return client.fetch(
+    groq`*[_type == "project" && slug.current == $slug][0]{
+      name,
+      tagline,
+      "coverImage": {
+        "image": coverImage.asset->url,
+        "alt": coverImage.alt
+      },
+      description,
+      projectUrl
     }`,
     { slug }
   );
 }
+export async function getCaseStudies() {
+  const query = `*[_type == "caseStudy"] {
+    _id,
+    title,
+    description,
+    solutions,
+    metrics
+  }`;
+  return await client.fetch(query);
+}
 
+
+export async function reviewsQuery() {
+  return client.fetch(
+    groq`*[_type == "review"] {
+      _id,
+      author_name,
+      author_url,
+      "profile_photo_url": profile_photo_url.asset->url,
+      rating,
+      text,
+      time,
+      isGoogleReview
+    }`
+  );
+}
+
+// sanity/sanity.query.ts
+export async function getNavbar() {
+  try {
+    const query = `*[_type == "navbar"][0] {
+      logo {
+        asset-> {
+          url
+        },
+        alt
+      },
+      logoText,
+      menuItems[] {
+        _key,
+        text,
+        href,
+        isExternal,
+        order
+      }
+    }`;
+
+    const navbar = await client.fetch(query);
+    return navbar || null; // Return null if no navbar document exists
+  } catch (error) {
+    console.error('Error fetching navbar:', error);
+    return null; // Return null on error
+  }
+}
 

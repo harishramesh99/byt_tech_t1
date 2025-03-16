@@ -1,9 +1,9 @@
 import Image from "next/legacy/image";
 import { Metadata } from "next";
-import { getSingleProject } from "@/sanity/sanity.query";
+import { getsingleProject } from "@/sanity/sanity.query";
 import type { ProjectType } from "@/types";
 import { PortableText } from "@portabletext/react";
-import fallBackImage from "@/public/project.png";
+
 
 type Props = {
   params: {
@@ -14,15 +14,14 @@ type Props = {
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.project;
-  const project: ProjectType = await getSingleProject(slug);
+  const project: ProjectType = await getsingleProject(slug);
 
   return {
     title: `${project.name} | Project`,
     description: project.tagline,
     openGraph: {
       images:
-        project.coverImage?.image ||
-        "https://res.cloudinary.com/victoreke/image/upload/v1689892912/docs/project.png",
+        project.coverImage?.image ,
       title: project.name,
       description: project.tagline,
     },
@@ -31,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Project({ params }: Props) {
   const slug = params.project;
-  const project: ProjectType = await getSingleProject(slug);
+  const project: ProjectType = await getsingleProject(slug);
 
   return (
     <main className="max-w-6xl mx-auto lg:px-16 px-8">
@@ -54,7 +53,7 @@ export default async function Project({ params }: Props) {
           className="rounded-xl border border-zinc-800"
           width={900}
           height={460}
-          src={project.coverImage?.image || fallBackImage}
+          src={project.coverImage?.image }
           alt={project.coverImage?.alt || project.name}
         />
 

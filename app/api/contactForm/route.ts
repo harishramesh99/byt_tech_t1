@@ -1,39 +1,46 @@
 import { NextResponse } from "next/server";
-import Contact from "../../../models/contact"; // Import Contact model
-import connectDB from "../../../config/db"; // MongoDB connection logic
+import Contact from "../../../models/contact";
+import connectDB from "../../../config/db";
+import validator from "validator";
 
 export async function POST(req: Request) {
   try {
-    // Parse request body
     const body = await req.json();
+    let { name, email, message } = body;
 
-    const { name, email, message } = body;
+    // Trim all input fields to prevent excessive spaces
+    name = name.trim();
+    email = email.trim();
+    message = message.trim();
 
-    // Validate required fields
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { message: "All fields are required" },
-        { status: 400 }
-      );
+    // ✅ Input Validation & Sanitization
+    if (!validator.isLength(name, { min: 2, max: 50 })) {
+      return NextResponse.json({ message: "Name must be 2-50 characters" }, { status: 400 });
     }
 
-    // Connect to MongoDB
+    if (!validator.isEmail(email)) {
+      return NextResponse.json({ message: "Invalid email format" }, { status: 400 });
+    }
+
+    if (!validator.isLength(message, { min: 5, max: 500 })) {
+      return NextResponse.json({ message: "Message must be 5-500 characters" }, { status: 400 });
+    }
+
+    // ✅ Sanitize inputs to prevent NoSQL Injection & XSS
+    name = validator.escape(name);
+    email = validator.escape(email);
+    message = validator.escape(message);
+
+    // ✅ Connect to MongoDB only when necessary
     await connectDB();
 
-    // Save contact form data to MongoDB
+    // ✅ Store the sanitized contact form data
     const contact = new Contact({ name, email, message });
     await contact.save();
 
-    return NextResponse.json(
-      { message: "Message sent successfully", data: contact },
-      { status: 201 }
-    );
+    return NextResponse.json({ message: "Message sent successfully" }, { status: 201 });
   } catch (error) {
-    console.error("Error saving contact form data:", error);
-    const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    return NextResponse.json(
-      { message: "Internal Server Error", error: errorMessage },
-      { status: 500 }
-    );
+    console.error("Error:", error);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

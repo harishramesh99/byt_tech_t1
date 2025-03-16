@@ -1,3 +1,228 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* Light mode (default) */
+  :root {
+    /* Base colors */
+    --background: 250 250 250;
+    --card-background: 255 255 255;
+    --text-primary: 241 245 249;
+    --text-secondary: 31 41 55;
+    --text-tertiary: 99 102 241;
+    --text-white: 255 255 255;
+    --border: 226 232 240;
+    
+    /* Component-specific colors */
+    --button-primary: 34 197 94;     /* green-500 */
+    --button-primary-hover: 22 163 74; /* green-600 */
+    --button-secondary: 99 102 241;   /* indigo-500 */
+    --button-secondary-hover: 79 70 229; /* indigo-600 */
+    
+    /* Form elements */
+    --input-background: 255 255 255;
+    --input-border: 226 232 240;
+    --input-text: 15 23 42;
+    --input-placeholder: 148 163 184;
+    --input-focus-ring: 59 130 246;
+    
+    /* Modal/Dialog */
+    --modal-overlay: 0 0 0;
+    --modal-background: 255 255 255;
+    --modal-shadow: 0 0 0;
+    
+    /* Cards & Sections */
+    --card-shadow: 0 4 6;
+    --card-highlight: 132 204 22;
+    --section-background: 250 250 250;
+    
+    /* Status colors */
+    --success: 34 197 94;
+    --error: 239 68 68;
+    --warning: 245 158 11;
+    --info: 59 130 246;
+    
+    /* Interactive elements */
+    --hover-overlay: 0 0 0 0.1;
+    --active-overlay: 0 0 0 0.2;
+    --disabled-opacity: 0.5;
+  }
+
+  /* Dark mode */
+  .dark {
+    /* Base colors */
+    --background: 15 23 42;
+    --card-background: 30 41 59;
+    --text-primary: 248 250 252;
+    --text-secondary: 31 41 55;
+    --border: 51 65 85;
+    
+    /* Component-specific colors */
+    --button-primary: 34 197 94;
+    --button-primary-hover: 22 163 74;
+    --button-secondary: 99 102 241;
+    --button-secondary-hover: 79 70 229;
+    
+    /* Form elements */
+    --input-background: 30 41 59;
+    --input-border: 51 65 85;
+    --input-text: 248 250 252;
+    --input-placeholder: 148 163 184;
+    --input-focus-ring: 59 130 246;
+    
+    /* Modal/Dialog */
+    --modal-overlay: 0 0 0;
+    --modal-background: 30 41 59;
+    --modal-shadow: 0 0 0;
+    
+    /* Cards & Sections */
+    --card-shadow: 0 0 0;
+    --card-highlight: 34 197 94;
+    --section-background: 15 23 42;
+    
+    /* Status colors remain the same for consistency */
+    --success: 34 197 94;
+    --error: 239 68 68;
+    --warning: 245 158 11;
+    --info: 59 130 246;
+    
+    /* Interactive elements */
+    --hover-overlay: 255 255 255 0.1;
+    --active-overlay: 255 255 255 0.2;
+    --disabled-opacity: 0.5;
+  }
+}
+
+@layer components {
+  /* Button styles */
+  .btn-base {
+    @apply rounded-lg px-6 py-3 font-bold transition-all duration-300 disabled:opacity-[var(--disabled-opacity)];
+  }
+  
+  .btn-primary {
+    @apply bg-[rgb(var(--button-primary))] 
+           text-[rgb(var(--text-primary))] 
+           hover:bg-[rgb(var(--button-primary-hover))]
+           focus:ring-2 
+           focus:ring-[rgb(var(--button-primary))] 
+           focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-[rgb(var(--button-secondary))] 
+           text-[rgb(var(--text-primary))] 
+           hover:bg-[rgb(var(--button-secondary-hover))]
+           focus:ring-2 
+           focus:ring-[rgb(var(--button-secondary))] 
+           focus:ring-offset-2;
+  }
+
+  /* Form input styles */
+  .input-base {
+    @apply w-full 
+           px-3 
+           py-2 
+           rounded-lg 
+           bg-[rgb(var(--input-background))]
+           border 
+           border-[rgb(var(--input-border))]
+           text-[rgb(var(--input-text))]
+           placeholder-[rgb(var(--input-placeholder))]
+           focus:outline-none 
+           focus:ring-2 
+           focus:ring-[rgb(var(--input-focus-ring))]
+           focus:border-transparent;
+  }
+
+  /* Card styles */
+  .card-base {
+    @apply bg-[rgb(var(--card-background))]
+           text-[rgb(var(--text-primary))]
+           border
+           border-[rgb(var(--border))]
+           rounded-xl
+           shadow-lg
+           transition-all
+           duration-300;
+  }
+
+  .card-highlight {
+    @apply bg-[rgb(var(--card-highlight))]
+           text-white;
+  }
+
+  /* Modal styles */
+  .modal-overlay {
+    @apply fixed 
+           inset-0 
+           bg-[rgb(var(--modal-overlay))] 
+           bg-opacity-50 
+           backdrop-blur-sm;
+  }
+
+  .modal-content {
+    @apply bg-[rgb(var(--modal-background))]
+           text-[rgb(var(--text-primary))]
+           rounded-lg
+           shadow-lg
+           p-6;
+  }
+
+  /* Section styles */
+  .section-base {
+    @apply bg-[rgb(var(--section-background))]
+           text-[rgb(var(--text-primary))]
+           py-16;
+  }
+
+  /* Text styles */
+  .text-primary {
+    @apply text-[rgb(var(--text-primary))];
+  }
+
+  .text-secondary {
+    @apply text-[rgb(var(--text-secondary))];
+  }
+
+  /* Status styles */
+  .status-success {
+    @apply text-[rgb(var(--success))];
+  }
+
+  .status-error {
+    @apply text-[rgb(var(--error))];
+  }
+
+  .status-warning {
+    @apply text-[rgb(var(--warning))];
+  }
+
+  .status-info {
+    @apply text-[rgb(var(--info))];
+  }
+
+  /* Interactive states */
+  .hover-effect {
+    @apply hover:bg-[rgb(var(--hover-overlay))]
+           active:bg-[rgb(var(--active-overlay))];
+  }
+}
+
+/* Utility classes for transitions */
+.theme-transition {
+  @apply transition-colors duration-200;
+}
+
+/* Utility classes for shadows */
+.themed-shadow-sm {
+  @apply shadow-sm shadow-[rgb(var(--card-shadow))];
+}
+
+.themed-shadow-md {
+  @apply shadow-md shadow-[rgb(var(--card-shadow))];
+}
+
+.themed-shadow-lg {
+  @apply shadow-lg shadow-[rgb(var(--card-shadow))];
+}

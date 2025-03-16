@@ -14,9 +14,9 @@ const SkillsDataProvider = () => {
     console.log('SkillsDataProvider mounted');
     const fetchSkills = async () => {
       try {
-        console.log('Fetching skills...');
+        //console.log('Fetching skills...');
         const skillsData = await getSkills();
-        //console.log('Skills fetched:', skillsData);
+       //console.log('Skills fetched:', skillsData);
         setSkills(skillsData);
       } catch (err) {
         //console.error('Error in fetchSkills:', err);

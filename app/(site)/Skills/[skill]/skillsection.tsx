@@ -1,5 +1,4 @@
-// app/components/SkillsSection.tsx
-
+"use client";
 
 import { SkillsType } from "@/types";
 
@@ -10,9 +9,9 @@ interface SkillsSectionProps {
 const SkillsSection = ({ skills }: SkillsSectionProps) => {
   return (
     <>
-      <section className="text-center mb-16">
-        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-6">
-          {skills[0]?.Headline || "I SPECIALIZE IN A RANGE OF 💪 "} 
+      <section className=" text-center mb-16">
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-6 text-white">
+          {skills[0]?.Headline || "I SPECIALIZE IN A RANGE OF 💪 SKILLS"}
         </h1>
       </section>
 

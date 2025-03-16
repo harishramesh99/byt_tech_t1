@@ -10,6 +10,7 @@ import ContactSection from "./[skill]/contactSection";
 const SkillsPage = () => {
   return (
     <main className="max-w-7xl mx-auto px-6 lg:px-16">
+      
       <SkillsDataProvider />
       <ContactSection />
     </main>

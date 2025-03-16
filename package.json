@@ -9,28 +9,43 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sanity/vision": "^3.68.1",
-    "@types/node": "20.5.0",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.45.0",
-    "eslint-config-next": "^14.2.3",
-    "framer-motion": "^11.14.4",
-    "lucide-react": "^0.468.0",
-    "mongoose": "^8.9.0",
-    "next": "^14.2.3",
-    "next-sanity": "7.0.4",
-    "postcss": "8.4.31",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "sanity": "^3.41.1",
-    "sharp": "^0.33.3",
-    "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "@radix-ui/react-slot": "^1.0.2",
+    "@sanity/vision": "^3.30.0",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@types/validator": "^13.11.8",
+    "@upstash/ratelimit": "^2.0.0",
+    "autoprefixer": "^10.4.17",
+    "clsx": "^2.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "framer-motion": "^11.0.3",
+    "lucide-react": "^0.330.0",
+    "mongoose": "^8.1.1",
+    "next": "^14.1.0",
+    "next-sanity": "^7.0.12",
+    "postcss": "^8.4.35",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sanity": "^3.30.0",
+    "sharp": "^0.33.2",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.3.3",
+    "validator": "^13.11.0",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@portabletext/react": "^3.0.4",
-    "react-icons": "^4.10.1"
+    "@portabletext/react": "^3.0.11",
+    "react-icons": "^5.0.1",
+    "styled-components": "^6.1.8",
+    "@types/styled-components": "^5.1.34"
+  },
+  "overrides": {
+    "next-sanity": {
+      "sanity": "^3.30.0"
+    }
   }
 }

@@ -1,5 +1,7 @@
 import { PortableTextBlock } from "sanity";
 
+
+
 export type ProfileType = {
   _id: string;
   fullName: string;
@@ -28,23 +30,21 @@ export type JobType = {
   endDate: Date;
 };
 
-export type ProjectType = {
+export interface ProjectType {
   _id: string;
   name: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
   tagline: string;
-  projectUrl: string;
-  logo: string;
+  projectUrl?: string;
   coverImage: {
-    alt: string | null;
     image: string;
+    alt?: string;
   };
-  image: {
-    alt: string | null;
-    image: string;
-  };
-  description: PortableTextBlock[];
-};
+  description: any; // For PortableText content
+  tags?: string[];
+}
 
 export type SkillsType = {
   _id: string; // Unique identifier for the skill document
@@ -67,4 +67,59 @@ export interface ApiResponse {
   message: string;
   data?: any;
   error?: string;
+}
+
+export interface PostType {
+  slug: any;
+  _id: string;
+  title: string;
+  publishedAt: string;
+  excerpt: string;
+  mainImage: {
+    alt: string;
+    image: string;
+  };
+  body: PortableTextBlock[];
+}
+
+export interface caseStudyType {
+  _id: string;
+  title: string;
+  description: string;
+  solutions: string[];
+  metrics: {
+    value: string;
+    label: string;
+  }[];
+}
+
+export interface Review {
+  _id: string;
+  author_name: string;
+  author_url?: string;
+  profile_photo_url: string;
+  rating: number;
+  text: string;
+  time: string;
+  isGoogleReview: boolean;
+}
+
+// types/index.ts
+export interface MenuItem {
+  _key: string;
+  text: string;
+  href: string;
+  isExternal?: boolean;
+  order?: number;
+}
+
+export interface Navbar {
+  logo?: {
+    asset: {
+      url: string;
+    };
+    alt?: string;
+  };
+  logoText?: string;
+  menuItems: MenuItem[];
 }
